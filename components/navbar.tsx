@@ -18,12 +18,12 @@ import clsx from "clsx";
 
 import {
   TwitterIcon,
-  GithubIcon,
+  FacebookIcon,
   DiscordIcon,
-  HeartFilledIcon,
+  RedditIcon,
 } from "@/components/icons";
 
-import Logo  from "@/public/LOGO.png";
+import Logo from "@/public/LOGO.png";
 import Image from "next/image";
 
 export const Navbar = () => {
@@ -65,15 +65,27 @@ export const Navbar = () => {
           <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
             <DiscordIcon className="text-default-500" />
           </Link>
-          <Link isExternal href={siteConfig.links.github} aria-label="Github">
-            <GithubIcon className="text-default-500" />
+          <Link isExternal href={siteConfig.links.facebook} aria-label="Github">
+            <FacebookIcon className="text-default-500" />
+          </Link>
+          <Link isExternal href={siteConfig.links.reddit} aria-label="Github">
+            <RedditIcon className="text-default-500" />
           </Link>
         </NavbarItem>
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal href={siteConfig.links.github} aria-label="Github">
-          <GithubIcon className="text-default-500" />
+        <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
+          <TwitterIcon className="text-default-500" />
+        </Link>
+        <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
+          <DiscordIcon className="text-default-500" />
+        </Link>
+        <Link isExternal href={siteConfig.links.facebook} aria-label="Github">
+          <FacebookIcon className="text-default-500" />
+        </Link>
+        <Link isExternal href={siteConfig.links.reddit} aria-label="Github">
+          <RedditIcon className="text-default-500" />
         </Link>
         <NavbarMenuToggle />
       </NavbarContent>
@@ -81,17 +93,7 @@ export const Navbar = () => {
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                    "primary"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
+            <NavbarMenuItem key={`${item}-${index}`}></NavbarMenuItem>
           ))}
         </div>
       </NavbarMenu>

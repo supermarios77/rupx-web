@@ -16,10 +16,9 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    reddit: "https://www.reddit.com/r/RupayaCoin/",
+    twitter: "https://twitter.com/RupayaCoin",
+    discord: "https://discord.com/invite/8tbvMQM",
+    facebook: "https://www.facebook.com/rupayacoin",
   },
 };
