@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -7,7 +9,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
 import { Link } from "@nextui-org/link";
 
 import { link as linkStyles } from "@nextui-org/theme";
@@ -15,6 +16,7 @@ import { link as linkStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { useReducer } from "react";
 
 import {
   TwitterIcon,
@@ -27,8 +29,15 @@ import Logo from "@/public/LOGO.png";
 import Image from "next/image";
 
 export const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useReducer((current) => !current, false);
+
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
+    <NextUINavbar
+      maxWidth="xl"
+      position="sticky"
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -93,7 +102,19 @@ export const Navbar = () => {
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}></NavbarMenuItem>
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <NextLink
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                )}
+                color="foreground"
+                href={item.href}
+                onClick={() => setIsMenuOpen()}
+              >
+                {item.label}
+              </NextLink>
+            </NavbarMenuItem>
           ))}
         </div>
       </NavbarMenu>
