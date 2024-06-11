@@ -1,8 +1,34 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
-import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import { JSX, SVGProps } from "react";
+
+const cardDetails = [
+  {
+    icon: UserIcon,
+    title: "About Us",
+    description: "Learn more about our mission, vision, and the team behind Rupaya.",
+    link: "/about",
+  },
+  {
+    icon: BarChartIcon,
+    title: "Tokenomics",
+    description: "Explore the details of our token distribution and economic model.",
+    link: "/tokenomics",
+  },
+  {
+    icon: CodeIcon,
+    title: "Technology",
+    description: "Discover the cutting-edge technology powering our platform.",
+    link: "/technology",
+  },
+  {
+    icon: UsersIcon,
+    title: "Community & Governance",
+    description: "Learn about our community-driven approach and governance model.",
+    link: "/community-&-governance",
+  },
+];
 
 export function Cards() {
   return (
@@ -11,59 +37,18 @@ export function Cards() {
         <section className="bg-black text-gray-50 py-24 md:py-32 lg:py-40">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              <Card className="flex flex-col items-center justify-center gap-4 p-8 text-center">
-                <UserIcon className="h-12 w-12" />
-                <h3 className="text-xl font-semibold">About Us</h3>
-                <p className="text-gray-400">
-                  Learn more about our mission, vision, and the team behind
-                  Rupaya.
-                </p>
-                <Button className="mt-2" variant="link">
-                  <Link className="hover:underline" href="#">
-                    Learn More
-                  </Link>
-                </Button>
-              </Card>
-              <Card className="flex flex-col items-center justify-center gap-4 p-8 text-center">
-                <BarChartIcon className="h-12 w-12" />
-                <h3 className="text-xl font-semibold">Tokenomics</h3>
-                <p className="text-gray-400">
-                  Explore the details of our token distribution and economic
-                  model.
-                </p>
-                <Button className="mt-2" variant="link">
-                  <Link className="hover:underline" href="#">
-                    Learn More
-                  </Link>
-                </Button>
-              </Card>
-              <Card className="flex flex-col items-center justify-center gap-4 p-8 text-center">
-                <CodeIcon className="h-12 w-12" />
-                <h3 className="text-xl font-semibold">Technology</h3>
-                <p className="text-gray-400">
-                  Discover the cutting-edge technology powering our platform.
-                </p>
-                <Button className="mt-2" variant="link">
-                  <Link className="hover:underline" href="#">
-                    Learn More
-                  </Link>
-                </Button>
-              </Card>
-              <Card className="flex flex-col items-center justify-center gap-4 p-8 text-center">
-                <UsersIcon className="h-12 w-12" />
-                <h3 className="text-xl font-semibold">
-                  Community & Governance
-                </h3>
-                <p className="text-gray-400">
-                  Learn about our community-driven approach and governance
-                  model.
-                </p>
-                <Button className="mt-2" variant="link">
-                  <Link className="hover:underline" href="#">
-                    Learn More
-                  </Link>
-                </Button>
-              </Card>
+              {cardDetails.map((card, index) => (
+                <Card key={index} className="flex flex-col items-center justify-center gap-4 p-8 text-center">
+                  <card.icon className="h-12 w-12" />
+                  <h3 className="text-xl font-semibold">{card.title}</h3>
+                  <p className="text-gray-400">{card.description}</p>
+                  <Button className="mt-2" variant="link">
+                    <Link className="hover:underline" href={card.link}>
+                      Learn More
+                    </Link>
+                  </Button>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
