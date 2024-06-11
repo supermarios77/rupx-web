@@ -1,123 +1,68 @@
-"use client";
+import Link from "next/link";
+import Image from "next/image";
 
-import {
-  Navbar as NextUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@nextui-org/navbar";
-import { Link } from "@nextui-org/link";
+import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
-import { link as linkStyles } from "@nextui-org/theme";
 
 import { siteConfig } from "@/config/site";
-import NextLink from "next/link";
-import clsx from "clsx";
-import { useReducer } from "react";
 
 import {
   TwitterIcon,
   FacebookIcon,
   DiscordIcon,
   RedditIcon,
-} from "@/components/icons";
+  MenuIcon
+} from "@/config/icons";
 
 import Logo from "@/public/LOGO.png";
-import Image from "next/image";
 
-export const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useReducer((current) => !current, false);
-
+export function Navbar() {
   return (
-    <NextUINavbar
-      maxWidth="xl"
-      position="sticky"
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={setIsMenuOpen}
-    >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Image src={Logo} alt="alt" width={65} height={65} />
-            <p className="font-bold text-inherit logo">Rupaya</p>
-          </NextLink>
-        </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul>
-      </NavbarContent>
-
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
+    <header className="flex h-16 w-full items-center justify-between px-9 md:px-6 pt-9">
+      <Link
+        className="flex items-center gap-2 text-lg font-semibold md:text-base"
+        href="#"
       >
-        <NavbarItem className="hidden sm:flex gap-2">
-          <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
-            <TwitterIcon className="text-default-500" />
+        <Image src={Logo} className="h-10 w-10" alt="ruapaya logo"/>
+        <span className="">{siteConfig.name}</span>
+      </Link>
+      <nav className="hidden items-center gap-6 md:flex">
+        {siteConfig.navItems.map((item) => (
+          <Link
+            className="font-medium hover:underline"
+            href={item.href}
+            key={item.href}
+          >
+            {item.label}
           </Link>
-          <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-            <DiscordIcon className="text-default-500" />
-          </Link>
-          <Link isExternal href={siteConfig.links.facebook} aria-label="Github">
-            <FacebookIcon className="text-default-500" />
-          </Link>
-          <Link isExternal href={siteConfig.links.reddit} aria-label="Github">
-            <RedditIcon className="text-default-500" />
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal href={siteConfig.links.twitter} aria-label="Twitter">
-          <TwitterIcon className="text-default-500" />
-        </Link>
-        <Link isExternal href={siteConfig.links.discord} aria-label="Discord">
-          <DiscordIcon className="text-default-500" />
-        </Link>
-        <Link isExternal href={siteConfig.links.facebook} aria-label="Github">
-          <FacebookIcon className="text-default-500" />
-        </Link>
-        <Link isExternal href={siteConfig.links.reddit} aria-label="Github">
-          <RedditIcon className="text-default-500" />
-        </Link>
-        <NavbarMenuToggle />
-      </NavbarContent>
-
-      <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )}
-                color="foreground"
+        ))}
+      </nav>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button
+            className="md:hidden"
+            size="icon"
+            variant="outline"
+          >
+            <MenuIcon className="h-6 w-6" />
+            <span className="sr-only">Toggle navigation menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="right">
+          <div className="grid gap-4 p-4">
+            {siteConfig.navMenuItems.map((item) => (
+              <Link
+                className="font-medium hover:underline"
                 href={item.href}
-                onClick={() => setIsMenuOpen()}
+                key={item.href}
               >
                 {item.label}
-              </NextLink>
-            </NavbarMenuItem>
-          ))}
-        </div>
-      </NavbarMenu>
-    </NextUINavbar>
+              </Link>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
+    </header>
   );
-};
+}

@@ -9,24 +9,8 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "About Us",
-      href: "/about",
-    },
-    {
-      label: "Technology",
-      href: "/technology",
-    },
-    {
-      label: "Community",
-      href: "/community",
-    },
-    {
       label: "Roadmap",
       href: "/roadmap",
-    },
-    {
-      label: "Partnerships",
-      href: "/partnerships",
     },
     {
       label: "Contact",
@@ -39,24 +23,8 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "About Us",
-      href: "/about",
-    },
-    {
-      label: "Technology",
-      href: "/technology",
-    },
-    {
-      label: "Community",
-      href: "/community",
-    },
-    {
       label: "Roadmap",
       href: "/roadmap",
-    },
-    {
-      label: "Partnerships",
-      href: "/partnerships",
     },
     {
       label: "Contact",

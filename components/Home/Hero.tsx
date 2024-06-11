@@ -1,28 +1,47 @@
 import React from "react";
 import Image from "next/image";
 import Logo from "@/public/LOGO.png";
+import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <section className="bg-black hero">
-      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-        <div className="mr-auto place-self-center lg:col-span-7">
-          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xltext-white">
-            Exploring Decentralized Finance
-          </h1>
-          <p className="max-w-2xl mb-6 font-light lg:mb-8 md:text-lg lg:text-xl text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-            sodales scelerisque dui, sit amet ultrices lacus consectetur at.
-          </p>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-white"
-          >
-            Learn More
-          </a>
-        </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <Image src={Logo} alt="Rupaya Logo" />
+    <section className="bg-black text-gray-50 py-24 md:py-32 lg:py-40">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:gap-16">
+          <div className="space-y-8">
+            <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-6xl">
+              Exploring Decentralized Finance
+            </h1>
+            <p className="text-lg text-white">
+              Experience the future of finance with Rupaya. Our innovative
+              platform combines cutting-edge technology with a sleek,
+              user-friendly interface to make managing your money easier than
+              ever before.
+            </p>
+            <div className="flex gap-4">
+              <Button className="text-black" size="lg">
+                Get Started
+              </Button>
+              <Button
+                className="text-white glow hover:text-gray-300"
+                size="lg"
+                variant="outline"
+              >
+                Learn More
+              </Button>
+            </div>
+          </div>
+          <div className="relative">
+            <Image
+              alt="Hero Image"
+              className="mx-auto rounded-lg shadow-lg h-full sm:invisible md:visible"
+              src={Logo}
+              style={{
+                aspectRatio: "700/500",
+                objectFit: "cover",
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
